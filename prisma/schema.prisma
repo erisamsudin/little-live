@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Appointment {
+  id        Int       @id @default(autoincrement())
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@unique([startTime, endTime])
+}
+
+model Configuration {
+  id                     Int       @id @default(autoincrement())
+  slotDuration           Int
+  maxSlotsPerAppointment Int
+  operationalStartHour   Int
+  operationalEndHour     Int
+  unavailableStartTime   DateTime?
+  unavailableEndTime     DateTime?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime? @updatedAt
+}
+
+model PublicHoliday {
+  id          Int      @id @default(autoincrement())
+  date        DateTime @unique
+  description String?
+}
+
+model UnavailableHours {
+  id          Int      @id @default(autoincrement())
+  startTime   DateTime
+  endTime     DateTime
+  description String?
+}
+
