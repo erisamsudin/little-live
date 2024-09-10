@@ -37,8 +37,6 @@ $ npm install
 ```bash
 # development
 $ npm run start
-# insert data to table user
-$ npm run start:migrate
 
 # watch mode
 $ npm run start:dev
@@ -46,6 +44,9 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Dump Database
+Dump File DDL and data.sql
 
 ## Test
 
